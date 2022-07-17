@@ -1,0 +1,296 @@
+.farms-section .ant-card .ant-card-body{
+    padding: 0;
+}
+.farms-section .ant-card .content-area{
+    flex-direction: column;
+    justify-content: space-around;
+    display: flex;
+    padding: 24px;
+}
+.farms-section .ant-card .header{
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.farms-section .ant-card .apr{
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.farms-section .ant-card .earn{
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.farms-section .ant-card .header .right .text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.farms-section .ant-card .header .right .text .h2{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: rgb(40, 13, 95);
+}
+.farms-section .ant-card .header .right .text .btn-area {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.hjuQtz {
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 16px;
+    display: inline-flex;
+    font-weight: 400;
+    white-space: nowrap;
+    height: 28px;
+    padding: 0px 8px;
+    font-size: 14px;
+    color: rgb(118, 69, 217);
+    background: rgb(250, 249, 250);
+    border: 2px solid rgb(118, 69, 217);
+}
+.dCnuIy {
+    -webkit-box-align: center;
+    margin-left: 4px;
+    align-items: center;
+    border-radius: 16px;
+    color: rgb(255, 255, 255);
+    display: inline-flex;
+    font-weight: 400;
+    white-space: nowrap;
+    height: 28px;
+    padding: 0px 8px;
+    font-size: 14px;
+    background-color: rgb(118, 69, 217);
+}
+.iZVDFD {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.evrPPn {
+    color: rgb(40, 13, 95);
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 16px;
+}   
+.eOXvol {
+    color: rgb(40, 13, 95);
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: 16px;
+}
+.iHNZWH {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+.jHEyFj {
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 0px;
+    border-radius: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    -webkit-box-pack: center;
+    justify-content: center;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    opacity: 1;
+    outline: 0px;
+    transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+    height: 32px;
+    padding: 0px 16px;
+    background-color: transparent;
+    color: rgb(31, 199, 212);
+    box-shadow: none;
+    margin-left: 4px;
+    padding: 0px;
+    width: 32px
+}
+.bEkEmc {
+    padding-top: 16px;
+}
+.jtuYYv {
+    display: flex;
+}
+.djXdWD {
+    color: rgb(118, 69, 217);
+    font-weight: 600;
+    line-height: 1.5;
+    text-transform: uppercase;
+    padding-right: 4px;
+    font-size: 12px;
+}
+.gHFMAm {
+    color: rgb(122, 110, 170);
+    font-weight: 600;
+    line-height: 1.5;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.iZVDFD {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.jNPFeO {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.jbrLxW {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: rgb(189, 194, 196);
+}
+.ktaxfK:disabled, .ktaxfK.pancake-button--disabled {
+    background-color: rgb(233, 234, 235);
+    border-color: rgb(233, 234, 235);
+    box-shadow: none;
+    color: rgb(189, 194, 196);
+    cursor: not-allowed;
+}
+.ktaxfK {
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 0px;
+    border-radius: 16px;
+    box-shadow: rgb(14 14 44 / 40%) 0px -1px 0px 0px inset;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    -webkit-box-pack: center;
+    justify-content: center;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    opacity: 1;
+    outline: 0px;
+    transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+    height: 48px;
+    padding: 0px 24px;
+    background-color: rgb(31, 199, 212);
+    color: white;
+}
+.jtuYYv {
+    display: flex;
+}
+.djXdWD {
+    color: rgb(118, 69, 217);
+    font-weight: 600;
+    line-height: 1.5;
+    text-transform: uppercase;
+    padding-right: 4px;
+    font-size: 12px;
+}
+.gHFMAm {
+    color: rgb(122, 110, 170);
+    font-weight: 600;
+    line-height: 1.5;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.bjAFXE {
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 0px;
+    border-radius: 16px;
+    box-shadow: rgb(14 14 44 / 40%) 0px -1px 0px 0px inset;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    -webkit-box-pack: center;
+    justify-content: center;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    opacity: 1;
+    outline: 0px;
+    transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+    height: 48px;
+    padding: 0px 24px;
+    background-color: rgb(31, 199, 212);
+    color: white;
+    width: 100%;
+    margin-top: 8px;
+}
+.farms-section .ant-collapse > .ant-collapse-item {
+    border: 0px solid #d9d9d9;
+}
+.farms-section .ant-collapse, span.ant-collapse-header-text {
+    background-color: #fff;
+    border: 0px solid #d9d9d9;
+    border-bottom: 0;
+    border-radius: 0;
+    color: rgb(31, 199, 212);
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: 16px;
+}
+.farms-section .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    justify-content: center;
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
+    vertical-align: unset;
+}
+.toggle {
+    border-top: 2px solid #ccc;
+    margin: 20px 0 0 0;
+}
+.jLSRWf {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.evrPPn {
+    color: rgb(40, 13, 95);
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 16px;
+}
+.jUAwz {
+    font-weight: 400;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: fit-content;
+    color: rgb(31, 199, 212);
+    line-height: 1.5;
+    font-size: 16px;
+}
+.fJSxMQ {
+    align-self: center;
+    fill: rgb(31, 199, 212);
+    flex-shrink: 0;
+    margin-left: 4px;
+}
+.farms-section .ant-collapse-content {
+    border-top: 0px solid #d9d9d9;
+}

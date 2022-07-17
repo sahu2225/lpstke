@@ -1,0 +1,17 @@
+.breadcrumb {
+    background: linear-gradient(139.73deg, rgb(229, 253, 255) 0%, rgb(243, 239, 255) 100%);
+    padding: 50px!important;
+}
+.breadcrumb h1{
+    font-size: 64px;
+    color: rgb(118, 69, 217);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+.breadcrumb h2{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: rgb(40, 13, 95);
+}
