@@ -1,10 +1,10 @@
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
-import ABI from '../abi.json';
-import STAKEABI from '../stakeabi.json';
+import POOLABI from '../poolabi.json';
+import LOTTEABI from '../lotteabi.json';
 
-const tokenAddress = '0xa538ba3cf94b9103389ebcda48a13e61f14f33ef';
-const stackAddress = '0x1172E284443FB309A801d48C7A7E16aeE26Ab921';
+const poolAddress = '0x8b381bFa598a9DA0492dE3E5Ce97ce6Fc84DAe47';
+const lotteAddress = '0xa9400Fd24264401AE5511e9F0AcC97899e9Fd78B';
 
 export const checkWalletIsConnected = async () => {
   const { ethereum } = window;
@@ -33,13 +33,13 @@ export const checkWalletIsConnected = async () => {
 // approve(addrs of stake, 100)
 // stake(100)
 
-export const balanceCheck = async () => {
+export const poolBalanceCheck = async () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   const signer = provider.getSigner();
   let userAddress = await signer.getAddress();
 
-  const tokenContract = new ethers.Contract(tokenAddress, ABI, signer);
+  const tokenContract = new ethers.Contract(lotteAddress, LOTTEABI, signer);
 
   let userBalance;
   await tokenContract
@@ -57,7 +57,11 @@ export const balanceCheck = async () => {
   return userBalance;
 };
 
-export const startTransaction = async ({ setError, setTxs, stackAmmount }) => {
+export const startPoolTransaction = async ({
+  setError,
+  setTxs,
+  stackAmmount,
+}) => {
   let amount = ethers.utils.parseUnits(stackAmmount, 18);
   try {
     if (!window.ethereum) {
@@ -73,11 +77,10 @@ export const startTransaction = async ({ setError, setTxs, stackAmmount }) => {
 
     console.log(userAddress);
 
-    const tokenContract = new ethers.Contract(tokenAddress, ABI, signer);
+    const lotteeContract = new ethers.Contract(lotteAddress, LOTTEABI, signer);
+    const poolContract = new ethers.Contract(poolAddress, POOLABI, signer);
 
-    const stackContract = new ethers.Contract(stackAddress, STAKEABI, signer);
-
-    let userBalanceForSelectedTokenPayment = await tokenContract.balanceOf(
+    let userBalanceForSelectedTokenPayment = await lotteeContract.balanceOf(
       userAddress
     );
 
@@ -89,8 +92,9 @@ export const startTransaction = async ({ setError, setTxs, stackAmmount }) => {
 
     console.log(blnc);
     // ethers.utils.getAddress(addr);
-    await tokenContract.approve(stackAddress, amount).then(async (tx) => {
-      await stackContract.stake(amount).then(() => {
+    const lockup = '1';
+    await lotteeContract.approve(poolAddress, amount).then(async (tx) => {
+      await poolContract.staketime(amount, lockup).then(() => {
         // balanceCheck();
         toast.dismiss();
         toast.success('Buy successfully');
@@ -99,13 +103,14 @@ export const startTransaction = async ({ setError, setTxs, stackAmmount }) => {
       setTxs([tx]);
     });
   } catch (err) {
+    console.log(err);
     setError(err?.message?.slice(0, 50));
     toast.dismiss();
     toast.error('Buy unsuccessfull');
   }
 };
 
-export const startUnStake = async ({ setError, setTxs, unstakeAmount }) => {
+export const startUnStakePool = async ({ setError, setTxs, unstakeAmount }) => {
   let amount = ethers.utils.parseUnits(unstakeAmount, 18);
   try {
     if (!window.ethereum) {
@@ -117,11 +122,10 @@ export const startUnStake = async ({ setError, setTxs, unstakeAmount }) => {
     const signer = provider.getSigner();
     let userAddress = await signer.getAddress();
 
-    const tokenContract = new ethers.Contract(tokenAddress, ABI, signer);
+    const lotteeContract = new ethers.Contract(lotteAddress, LOTTEABI, signer);
+    const poolContract = new ethers.Contract(poolAddress, POOLABI, signer);
 
-    const stackContract = new ethers.Contract(stackAddress, STAKEABI, signer);
-
-    let userBalanceForSelectedTokenPayment = await tokenContract.balanceOf(
+    let userBalanceForSelectedTokenPayment = await lotteeContract.balanceOf(
       userAddress
     );
 
@@ -135,13 +139,9 @@ export const startUnStake = async ({ setError, setTxs, unstakeAmount }) => {
 
     const gdcc = '0.1';
     let gdccValue = ethers.utils.parseUnits(gdcc, 18);
-    // ethers.utils.getAddress(addr);
-    // await tokenContract.approve(stackAddress, amount).then(async (tx) => {
-    // await stackContract.methods
-    // .withdraw(amount)
-    // .send({ from: tokenContract, value: gdcc, gas: 900000 })
-    await stackContract
-      .withdraw(amount, { value: ethers.utils.parseEther('0.01') })
+
+    await poolContract
+      .unstake({ value: ethers.utils.parseEther('0.01') })
       .then(() => {
         // balanceCheck();
         toast.dismiss();
@@ -158,20 +158,24 @@ export const startUnStake = async ({ setError, setTxs, unstakeAmount }) => {
   }
 };
 
-export const stakeBalanceCheck = async () => {
+export const poolStakeBalanceCheck = async () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   const signer = provider.getSigner();
   let userAddress = await signer.getAddress();
 
-  const stakeContract = new ethers.Contract(stackAddress, STAKEABI, signer);
+  const poolContract = new ethers.Contract(poolAddress, POOLABI, signer);
+  const lotteeContract = new ethers.Contract(lotteAddress, LOTTEABI, signer);
 
   let userStakeBalance;
-  await stakeContract
-    .getStaked(userAddress)
+
+  console.log({ userAddress });
+
+  await poolContract
+    .user(userAddress)
     .then((balance) => {
       // console.log(balance);
-      userStakeBalance = ethers.utils.formatUnits(balance, 18);
+      userStakeBalance = ethers.utils.formatUnits(balance.amount, 18);
       return userStakeBalance;
     })
     .catch((err) => {
@@ -184,11 +188,11 @@ export const stakeBalanceCheck = async () => {
 };
 
 // unsolved.... Saurav will check the function
-export const totalStakeCheck = async () => {
-  const stakeContract = new ethers.Contract(stackAddress, STAKEABI);
+export const totalPoolStakeCheck = async () => {
+  const poolContract = new ethers.Contract(poolAddress, POOLABI);
 
   let stakeBalance;
-  await stakeContract
+  await poolContract
     .total(0)
     .then((balance) => {
       console.log(balance);
@@ -205,19 +209,20 @@ export const totalStakeCheck = async () => {
   return stakeBalance;
 };
 
-export const hopeEarnedCheck = async () => {
+export const poolHopeEarnedCheck = async () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   const signer = provider.getSigner();
   let userAddress = await signer.getAddress();
 
-  const stakeContract = new ethers.Contract(stackAddress, STAKEABI, signer);
+  const poolContract = new ethers.Contract(poolAddress, POOLABI, signer);
 
   let hopeEarned;
-  await stakeContract
-    .earned(userAddress)
+  await poolContract
+    .inforeward(userAddress)
     .then((balance) => {
-      hopeEarned = ethers.utils.formatUnits(balance, 18);
+      console.log(balance);
+      hopeEarned = ethers.utils.formatUnits(balance[0], 18);
       return hopeEarned;
     })
     .catch((err) => {
@@ -229,7 +234,7 @@ export const hopeEarnedCheck = async () => {
   return hopeEarned;
 };
 
-export const harvestEarnings = async ({ setError, setTxs }) => {
+export const harvestPoolEarnings = async ({ setError, setTxs }) => {
   try {
     if (!window.ethereum) {
       throw new Error('No crypto wallet found. Please install it.');
@@ -239,8 +244,11 @@ export const harvestEarnings = async ({ setError, setTxs }) => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
 
-    const stackContract = new ethers.Contract(stackAddress, STAKEABI, signer);
-    await stackContract.claimReward().then(async (tx) => {
+    const poolContract = new ethers.Contract(poolAddress, POOLABI, signer);
+    const lotteeContract = new ethers.Contract(lotteAddress, LOTTEABI, signer);
+
+    // const stackContract = new ethers.Contract(lotteAddress, LOTTEABI, signer);
+    await poolContract.claim().then(async (tx) => {
       toast.dismiss();
       toast.success('Harvest successfully');
 

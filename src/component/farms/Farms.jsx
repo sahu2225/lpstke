@@ -11,7 +11,11 @@ import Breadcrumb from '../breadcrumb/Breadcrumb';
 import ConnectWallet from '../modal/connect-wallet/ConnectWallet';
 import TokenPopup from '../modal/token-popup/TokenPopup';
 import { Link } from 'react-router-dom';
-import { harvestEarnings, hopeEarnedCheck, totalStakeCheck } from '../ethereumCliet';
+import {
+  harvestEarnings,
+  hopeEarnedCheck,
+  totalStakeCheck,
+} from '../ethereumCliet';
 
 const columns = [
   {
@@ -45,7 +49,7 @@ const columns = [
             <path d='M23 12L20.56 9.21L20.9 5.52L17.29 4.7L15.4 1.5L12 2.96L8.6 1.5L6.71 4.69L3.1 5.5L3.44 9.2L1 12L3.44 14.79L3.1 18.49L6.71 19.31L8.6 22.5L12 21.03L15.4 22.49L17.29 19.3L20.9 18.48L20.56 14.79L23 12ZM9.38 16.01L7 13.61C6.61 13.22 6.61 12.59 7 12.2L7.07 12.13C7.46 11.74 8.1 11.74 8.49 12.13L10.1 13.75L15.25 8.59C15.64 8.2 16.28 8.2 16.67 8.59L16.74 8.66C17.13 9.05 17.13 9.68 16.74 10.07L10.82 16.01C10.41 16.4 9.78 16.4 9.38 16.01Z'></path>
           </svg>
         </p>
-        <span>Core</span>
+        <span>Soft Staking</span>
       </div>
     ),
   },
@@ -89,38 +93,39 @@ const columns = [
       </div>
     ),
   },
-  {
-    title: '',
-    dataIndex: 'Total-Staked',
-    key: 'address',
-    render: () => (
-      <div className='totalStaked'>
-        <p>Total Staked</p>
-        <span>
-          $119,022,665
-          <Tooltip title='Total value of the funds in this farm’s liquidity pool'>
-            <QuestionCircleOutlined />
-          </Tooltip>
-        </span>
-      </div>
-    ),
-  },
-  {
-    title: '',
-    dataIndex: 'multiplier',
-    key: 'multiplier',
-    render: () => (
-      <div className='multiplier'>
-        <p>Multiplier</p>
-        <span>
-          40x
-          <Tooltip title="Total value of the funds in this farm's liquidity pool">
-            <QuestionCircleOutlined />
-          </Tooltip>
-        </span>
-      </div>
-    ),
-  },
+  // {
+  //   title: '',
+  //   dataIndex: 'Total-Staked',
+  //   key: 'address',
+  //   render: () => (
+  //     <div className='totalStaked'>
+  //       <p>Total Staked</p>
+  //       <span>
+  //         {/* $119,022,665 */}
+  //         {/* {totalStaked} */}
+  //         <Tooltip title='Total value of the funds in this farm’s liquidity pool'>
+  //           <QuestionCircleOutlined />
+  //         </Tooltip>
+  //       </span>
+  //     </div>
+  //   ),
+  // },
+  // {
+  //   title: '',
+  //   dataIndex: 'multiplier',
+  //   key: 'multiplier',
+  //   render: () => (
+  //     <div className='multiplier'>
+  //       <p>Multiplier</p>
+  //       <span>
+  //         40x
+  //         <Tooltip title="Total value of the funds in this farm's liquidity pool">
+  //           <QuestionCircleOutlined />
+  //         </Tooltip>
+  //       </span>
+  //     </div>
+  //   ),
+  // },
   Table.EXPAND_COLUMN,
 ];
 
@@ -153,42 +158,38 @@ const Farms = ({ conectmetaMask, accountDottedAddress }) => {
   const [input, setInput] = useState(true);
   const [showCalculator, setShowCalculator] = useState(false);
   const [showWallet, setShowWallet] = useState(false);
-  const [totalStaked, setTotalStaked] = useState(0.00);
-  const [hopeEarned, setHopeEarned] = useState(0.00);
+  const [totalStaked, setTotalStaked] = useState(0.0);
+  const [hopeEarned, setHopeEarned] = useState(0.0);
 
   const [error, setError] = useState('');
   const [txs, setTxs] = useState([]);
 
-
-  
+  useEffect(() => {
+    hopeEarnedCheck().then((res) => {
+      setHopeEarned(res);
+    });
+  }, [hopeEarned]);
 
   useEffect(() => {
-  //   totalStakeCheck().then((res) => {
-  //     setTotalStaked(res);
-  // })
-  hopeEarnedCheck().then((res) => {
-    setHopeEarned(res);
-})
-
-  }, [hopeEarned])
+    totalStakeCheck().then((res) => {
+      setTotalStaked(res);
+    });
+  }, [totalStaked]);
 
   const harvest = async () => {
-    console.log("clicked harvest");
+    console.log('clicked harvest');
     await harvestEarnings({
       setError,
       setTxs,
-     }).then(()=>(
+    }).then(() =>
       hopeEarnedCheck().then((res) => {
         setHopeEarned(res);
-    })
-    ))
-  }
+      })
+    );
+  };
 
   // console.log(setTxs);
   // console.log(setError);
-
-  
-  
 
   // console.log(totalStaked);
   return (
@@ -261,7 +262,11 @@ const Farms = ({ conectmetaMask, accountDottedAddress }) => {
                       <div className='row'>
                         <div className='col-md-4'>
                           <div className='links'>
-                            <a href='http://www.google.com' target='_blank' rel="noreferrer">
+                            <a
+                              href='http://www.google.com'
+                              target='_blank'
+                              rel='noreferrer'
+                            >
                               Get Hope-BNB LP
                               <svg
                                 viewBox='0 0 24 24'
@@ -310,13 +315,13 @@ const Farms = ({ conectmetaMask, accountDottedAddress }) => {
                                 <h2 className='h2'>{hopeEarned}</h2>
                               </div>
                             </div>
-                              <button
-                                className='panHope-btn izhINH pancake-button'
-                                // disabled=''
-                                onClick={harvest}
-                              >
-                                Harvest
-                              </button>
+                            <button
+                              className='panHope-btn izhINH pancake-button'
+                              onClick={harvest}
+                              disabled={hopeEarned <= 0 ? true : false}
+                            >
+                              Harvest
+                            </button>
                           </div>
                         </div>
                         <div className='col-md-4'>
