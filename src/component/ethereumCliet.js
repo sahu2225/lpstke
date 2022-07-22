@@ -251,5 +251,6 @@ export const harvestEarnings = async ({ setError, setTxs }) => {
     setError(err?.message?.slice(0, 50));
     toast.dismiss();
     toast.error('Harvest unsuccessfull');
+    toast.error(err?.message?.slice(0, 75));
   }
 };

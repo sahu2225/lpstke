@@ -10,6 +10,7 @@ import ConnectWallet from './component/modal/connect-wallet/ConnectWallet';
 import GridFarms from './component/farms/gridList/GridFarms';
 import GridPools from './component/pools/gridList/GridPools';
 import { checkWalletIsConnected } from './component/ethereumCliet';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [accountAddress, setAccountAddress] = useState('');
@@ -87,6 +88,7 @@ function App() {
           <Route path='/wallet' element={<ConnectWallet />} />
         </Routes>
       </div>
+      <ToastContainer closeButton={false} position='bottom-right' />
     </div>
   );
 }

@@ -40,7 +40,7 @@ const TokenPopupPool = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('BUY clicked');
+    console.log('pool BUY clicked');
     console.log(error);
     console.log(txs);
     setError();
@@ -55,6 +55,7 @@ const TokenPopupPool = () => {
   const unStake = async (e) => {
     e.preventDefault();
 
+    console.log('pool unstake clicked');
     // const unstakeAmount = 0.1
 
     await startUnStakePool({

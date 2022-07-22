@@ -2,7 +2,12 @@ import { Button, Tabs } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import ErrorMessage from '../../ErrorMessage';
-import { balanceCheck, stakeBalanceCheck, startTransaction, startUnStake } from '../../ethereumCliet';
+import {
+  balanceCheck,
+  stakeBalanceCheck,
+  startTransaction,
+  startUnStake,
+} from '../../ethereumCliet';
 import TxList from '../../TxList';
 import '../token-popup/TokenPopup.css';
 
@@ -43,11 +48,23 @@ const TokenPopup = () => {
       setError,
       setTxs,
       stackAmmount: amount,
-    });
+    })
+      .then(() => {
+        balanceCheck().then((res) => {
+          console.log(res);
+          setBalance(res);
+        });
+      })
+      .then(() => {
+        stakeBalanceCheck().then((res) => {
+          console.log(res);
+          setStakeBalance(res);
+        });
+      });
   };
 
   const unStake = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // const unstakeAmount = 0.1
 
@@ -55,8 +72,20 @@ const TokenPopup = () => {
       setError,
       setTxs,
       unstakeAmount,
-    });
-  }
+    })
+      .then(() => {
+        balanceCheck().then((res) => {
+          console.log(res);
+          setBalance(res);
+        });
+      })
+      .then(() => {
+        stakeBalanceCheck().then((res) => {
+          console.log(res);
+          setStakeBalance(res);
+        });
+      });
+  };
 
   return (
     <>
@@ -177,11 +206,13 @@ const TokenPopup = () => {
                             </div>
                           </div>
                           <div className='d-flex justify-content-between'>
-                          <div className='name'>
+                            <div className='name'>
                               <input
                                 type='number'
                                 value={unstakeAmount}
-                                onChange={(e) => setUnstakeAmount(e.target.value)}
+                                onChange={(e) =>
+                                  setUnstakeAmount(e.target.value)
+                                }
                                 placeholder='Enter Amount'
                                 min='0'
                                 max={stakeBalance}

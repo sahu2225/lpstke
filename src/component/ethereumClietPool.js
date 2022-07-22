@@ -107,6 +107,7 @@ export const startPoolTransaction = async ({
     setError(err?.message?.slice(0, 50));
     toast.dismiss();
     toast.error('Buy unsuccessfull');
+    toast.error(err?.message?.slice(0, 75));
   }
 };
 
@@ -124,18 +125,6 @@ export const startUnStakePool = async ({ setError, setTxs, unstakeAmount }) => {
 
     const lotteeContract = new ethers.Contract(lotteAddress, LOTTEABI, signer);
     const poolContract = new ethers.Contract(poolAddress, POOLABI, signer);
-
-    let userBalanceForSelectedTokenPayment = await lotteeContract.balanceOf(
-      userAddress
-    );
-
-    // const blnc = ethers.utils.parseEther(userBalanceForSelectedTokenPayment);
-    const blnc = ethers.utils.formatUnits(
-      userBalanceForSelectedTokenPayment,
-      18
-    );
-
-    console.log(blnc);
 
     const gdcc = '0.1';
     let gdccValue = ethers.utils.parseUnits(gdcc, 18);
@@ -155,6 +144,7 @@ export const startUnStakePool = async ({ setError, setTxs, unstakeAmount }) => {
     setError(err?.message?.slice(0, 50));
     toast.dismiss();
     toast.error('Unstake unsuccessfull');
+    toast.error(err?.message?.slice(0, 75));
   }
 };
 
