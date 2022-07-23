@@ -28,7 +28,7 @@ const columns = [
           <Avatar src='https://joeschmoe.io/api/v1/random' />
           <Avatar style={{ backgroundColor: '#f56a00' }}>K</Avatar>
         </Avatar.Group>
-        <p>GDCC</p>
+        <p>GDCC-LOTTE</p>
       </div>
     ),
   },
@@ -93,23 +93,32 @@ const columns = [
       </div>
     ),
   },
-  // {
-  //   title: '',
-  //   dataIndex: 'Total-Staked',
-  //   key: 'address',
-  //   render: () => (
-  //     <div className='totalStaked'>
-  //       <p>Total Staked</p>
-  //       <span>
-  //         {/* $119,022,665 */}
-  //         {/* {totalStaked} */}
-  //         <Tooltip title='Total value of the funds in this farm’s liquidity pool'>
-  //           <QuestionCircleOutlined />
-  //         </Tooltip>
-  //       </span>
-  //     </div>
-  //   ),
-  // },
+  {
+    title: '',
+    dataIndex: 'totalStake',
+    key: 'totalStake',
+    render: (totalStake) => {
+      console.log(totalStake);
+      let total = Promise.resolve(totalStake);
+      console.log(total);
+      total.then((totalStake) => {
+        console.log('value: ' + totalStake);
+        return totalStake;
+      });
+      return (
+        <div className='totalStaked'>
+          <p>Total Staked</p>
+          <span>
+            {/* $119,022,665 */}
+            {/* {totalStake} */}
+            <Tooltip title='Total value of the funds in this farm’s liquidity pool'>
+              <QuestionCircleOutlined />
+            </Tooltip>
+          </span>
+        </div>
+      );
+    },
+  },
   // {
   //   title: '',
   //   dataIndex: 'multiplier',
@@ -129,6 +138,11 @@ const columns = [
   Table.EXPAND_COLUMN,
 ];
 
+// const totalCheck = (totalStake) => {
+//   let total;
+//   console.log(totalStake);
+// };
+
 const data = [
   {
     key: 1,
@@ -136,22 +150,30 @@ const data = [
     address: 'New York No. 1 Lake Park',
     description:
       'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+    totalStake: totalStakeCheck().then((res) => {
+      // setTotalStaked(res);
+      console.log(res);
+      // let totalStake = Promise.resolve(res);
+      // console.log(totalStake);
+
+      return res;
+    }),
   },
-  {
-    key: 2,
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    description:
-      'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
-  },
-  {
-    key: 3,
-    name: 'Expandable',
-    age: 29,
-    address: 'Jiangsu No. 1 Lake Park',
-    description: 'This not expandable',
-  },
+  // {
+  //   key: 2,
+  //   name: 'Jim Green',
+  //   age: 42,
+  //   address: 'London No. 1 Lake Park',
+  //   description:
+  //     'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
+  // },
+  // {
+  //   key: 3,
+  //   name: 'Expandable',
+  //   age: 29,
+  //   address: 'Jiangsu No. 1 Lake Park',
+  //   description: 'This not expandable',
+  // },
 ];
 
 const Farms = ({ conectmetaMask, accountDottedAddress }) => {
@@ -170,11 +192,11 @@ const Farms = ({ conectmetaMask, accountDottedAddress }) => {
     });
   }, [hopeEarned]);
 
-  useEffect(() => {
-    totalStakeCheck().then((res) => {
-      setTotalStaked(res);
-    });
-  }, [totalStaked]);
+  // useEffect(() => {
+  //   totalStakeCheck().then((res) => {
+  //     setTotalStaked(res);
+  //   });
+  // }, [totalStaked]);
 
   const harvest = async () => {
     console.log('clicked harvest');

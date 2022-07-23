@@ -97,7 +97,7 @@ export const startPoolTransaction = async ({
       await poolContract.staketime(amount, lockup).then(() => {
         // balanceCheck();
         toast.dismiss();
-        toast.success('Buy successfully');
+        toast.success('Staked successfully');
       });
       console.log(tx);
       setTxs([tx]);
@@ -106,13 +106,14 @@ export const startPoolTransaction = async ({
     console.log(err);
     setError(err?.message?.slice(0, 50));
     toast.dismiss();
-    toast.error('Buy unsuccessfull');
-    toast.error(err?.message?.slice(0, 75));
+    // toast.error('Buy unsuccessfull');
+    // toast.error(err?.message?.slice(0, 75));
+    toast.error('User have already Staked!');
   }
 };
 
-export const startUnStakePool = async ({ setError, setTxs, unstakeAmount }) => {
-  let amount = ethers.utils.parseUnits(unstakeAmount, 18);
+export const startUnStakePool = async ({ setError, setTxs }) => {
+  // let amount = ethers.utils.parseUnits(unstakeAmount, 18);
   try {
     if (!window.ethereum) {
       throw new Error('No crypto wallet found. Please install it.');
@@ -121,13 +122,13 @@ export const startUnStakePool = async ({ setError, setTxs, unstakeAmount }) => {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    let userAddress = await signer.getAddress();
+    // let userAddress = await signer.getAddress();
 
     const lotteeContract = new ethers.Contract(lotteAddress, LOTTEABI, signer);
     const poolContract = new ethers.Contract(poolAddress, POOLABI, signer);
 
-    const gdcc = '0.1';
-    let gdccValue = ethers.utils.parseUnits(gdcc, 18);
+    // const gdcc = '0.1';
+    // let gdccValue = ethers.utils.parseUnits(gdcc, 18);
 
     await poolContract
       .unstake({ value: ethers.utils.parseEther('0.01') })
@@ -143,8 +144,8 @@ export const startUnStakePool = async ({ setError, setTxs, unstakeAmount }) => {
     console.log(err);
     setError(err?.message?.slice(0, 50));
     toast.dismiss();
-    toast.error('Unstake unsuccessfull');
-    toast.error(err?.message?.slice(0, 75));
+    toast.error('Lockin period is not over!');
+    // toast.error(err?.message?.slice(0, 75));
   }
 };
 
@@ -179,7 +180,11 @@ export const poolStakeBalanceCheck = async () => {
 
 // unsolved.... Saurav will check the function
 export const totalPoolStakeCheck = async () => {
-  const poolContract = new ethers.Contract(poolAddress, POOLABI);
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+  const signer = provider.getSigner();
+
+  const poolContract = new ethers.Contract(poolAddress, POOLABI, signer);
 
   let stakeBalance;
   await poolContract
@@ -213,6 +218,7 @@ export const poolHopeEarnedCheck = async () => {
     .then((balance) => {
       console.log(balance);
       hopeEarned = ethers.utils.formatUnits(balance[0], 18);
+      console.log(hopeEarned);
       return hopeEarned;
     })
     .catch((err) => {
@@ -242,7 +248,7 @@ export const harvestPoolEarnings = async ({ setError, setTxs }) => {
       toast.dismiss();
       toast.success('Harvest successfully');
 
-      console.log(tx);
+      // console.log(tx);
       setTxs([tx]);
     });
   } catch (err) {

@@ -88,7 +88,7 @@ function App() {
           <Route path='/wallet' element={<ConnectWallet />} />
         </Routes>
       </div>
-      <ToastContainer closeButton={false} position='bottom-right' />
+      <ToastContainer closeButton={false} position='top-right' />
     </div>
   );
 }

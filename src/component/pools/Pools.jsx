@@ -42,11 +42,11 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
   const [hopeEarned, setHopeEarned] = useState(0.0);
   const [totalStaked, setTotalStaked] = useState(0.0);
 
-  useEffect(() => {
-    totalPoolStakeCheck().then((res) => {
-      setTotalStaked(res);
-    });
-  }, [totalStaked]);
+  // useEffect(() => {
+  //   totalPoolStakeCheck().then((res) => {
+  //     setTotalStaked(res);
+  //   });
+  // }, [totalStaked, txs]);
 
   const columns = [
     {
@@ -97,17 +97,17 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
       ),
     },
 
-    {
-      title: '',
-      dataIndex: '',
-      key: 'x',
-      render: () => (
-        <div className='earn'>
-          <p>Hope Staked</p> <span>0.0</span>
-          <span style={{ fontSize: '12px' }}>0 USD</span>
-        </div>
-      ),
-    },
+    // {
+    //   title: '',
+    //   dataIndex: '',
+    //   key: 'x',
+    //   render: () => (
+    //     <div className='earn'>
+    //       <p>Hope Staked</p> <span>0.0</span>
+    //       <span style={{ fontSize: '12px' }}>0 USD</span>
+    //     </div>
+    //   ),
+    // },
     {
       title: '',
       dataIndex: '',
@@ -170,20 +170,28 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
     //     </div>
     //   ),
     // },
-    // {
-    //   title: '',
-    //   dataIndex: 'liquidity',
-    //   key: 'address',
-    //   render: () => (
-    //     <div className='liquidity'>
-    //       <p>Total staked</p>
-    //       <span>
-    //         $119,022,665 &nbsp;
-    //         <ClockCircleOutlined />
-    //       </span>
-    //     </div>
-    //   ),
-    // },
+    {
+      title: '',
+      dataIndex: 'liquidity',
+      key: 'address',
+      render: () => {
+        let totalStake = 0.0;
+        totalPoolStakeCheck().then((res) => {
+          // setTotalStaked(res);
+          totalStake = res;
+        });
+        return (
+          <div className='liquidity'>
+            <p>Total staked</p>
+            <span>
+              {/* $119,022,665 */}
+              {totalStake} &nbsp;
+              <ClockCircleOutlined />
+            </span>
+          </div>
+        );
+      },
+    },
     Table.EXPAND_COLUMN,
   ];
 
@@ -195,43 +203,41 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
       description:
         'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
     },
-    {
-      key: 2,
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      description:
-        'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
-    },
-    {
-      key: 2,
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      description:
-        'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
-    },
+    // {
+    //   key: 2,
+    //   name: 'Jim Green',
+    //   age: 42,
+    //   address: 'London No. 1 Lake Park',
+    //   description:
+    //     'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
+    // },
+    // {
+    //   key: 2,
+    //   name: 'Jim Green',
+    //   age: 42,
+    //   address: 'London No. 1 Lake Park',
+    //   description:
+    //     'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
+    // },
   ];
 
   useEffect(() => {
-    //   totalStakeCheck().then((res) => {
-    //     setTotalStaked(res);
-    // })
     poolHopeEarnedCheck().then((res) => {
       setHopeEarned(res);
     });
-  }, [hopeEarned]);
+  }, [hopeEarned, txs]);
 
   const harvest = async () => {
     console.log('clicked harvest');
     await harvestPoolEarnings({
       setError,
       setTxs,
-    }).then(() =>
+    }).then(() => {
+      console.log('calling the pool earning check');
       poolHopeEarnedCheck().then((res) => {
         setHopeEarned(res);
-      })
-    );
+      });
+    });
   };
 
   return (

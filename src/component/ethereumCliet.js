@@ -185,13 +185,17 @@ export const stakeBalanceCheck = async () => {
 
 // unsolved.... Saurav will check the function
 export const totalStakeCheck = async () => {
-  const stakeContract = new ethers.Contract(stackAddress, STAKEABI);
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+  const signer = provider.getSigner();
+
+  const stakeContract = new ethers.Contract(stackAddress, STAKEABI, signer);
 
   let stakeBalance;
   await stakeContract
     .total(0)
     .then((balance) => {
-      console.log(balance);
+      // console.log(balance);
       stakeBalance = ethers.utils.formatUnits(balance, 18);
       console.log(stakeBalance);
       return stakeBalance;
