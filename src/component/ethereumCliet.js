@@ -93,7 +93,7 @@ export const startTransaction = async ({ setError, setTxs, stackAmmount }) => {
       await stackContract.stake(amount).then(() => {
         // balanceCheck();
         toast.dismiss();
-        toast.success('Buy successfully');
+        toast.success('Farm successfully');
       });
       console.log(tx);
       setTxs([tx]);
@@ -101,7 +101,7 @@ export const startTransaction = async ({ setError, setTxs, stackAmmount }) => {
   } catch (err) {
     setError(err?.message?.slice(0, 50));
     toast.dismiss();
-    toast.error('Buy unsuccessfull');
+    toast.error('Farm unsuccessfull');
   }
 };
 
