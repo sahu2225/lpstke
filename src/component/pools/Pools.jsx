@@ -321,25 +321,25 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
                             </div>
                             <div className='iZVDFD'>
                               <div className='khbAo'>
-                                <Tooltip title='The average lock duration of all the locked staking positions of other users'>
-                                  <span>Average lock duration:</span>
+                                <Tooltip title='The lock duration of all the locked staking positions of other users'>
+                                  <span>Lock duration:</span>
                                 </Tooltip>
                               </div>
                               <div className='iHNZWH'>
                                 <div className='khbAo'>
-                                  <span>38 weeks</span>
+                                  <span>1 Year</span>
                                 </div>
                               </div>
                             </div>
                             <div className='iZVDFD'>
                               <div className='khbAo'>
-                                <Tooltip title='The average lock duration of all the locked staking positions of other users'>
+                                <Tooltip title='The lock duration of all the locked staking positions of other users'>
                                   <span>Performance Fee</span>
                                 </Tooltip>
                               </div>
                               <div className='iHNZWH'>
                                 <div className='khbAo'>
-                                  <span>0~2%</span>
+                                  <span>0.01 GDCC</span>
                                 </div>
                               </div>
                             </div>
