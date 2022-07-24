@@ -42,11 +42,11 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
   const [hopeEarned, setHopeEarned] = useState(0.0);
   const [totalStaked, setTotalStaked] = useState(0.0);
 
-  // useEffect(() => {
-  //   totalPoolStakeCheck().then((res) => {
-  //     setTotalStaked(res);
-  //   });
-  // }, [totalStaked, txs]);
+  useEffect(() => {
+    totalPoolStakeCheck().then((res) => {
+      setTotalStaked(res);
+    });
+  }, [totalStaked, txs]);
 
   const columns = [
     {
@@ -170,28 +170,28 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
     //     </div>
     //   ),
     // },
-    {
-      title: '',
-      dataIndex: 'liquidity',
-      key: 'address',
-      render: () => {
-        let totalStake = 0.0;
-        totalPoolStakeCheck().then((res) => {
-          // setTotalStaked(res);
-          totalStake = res;
-        });
-        return (
-          <div className='liquidity'>
-            <p>Total staked</p>
-            <span>
-              {/* $119,022,665 */}
-              {totalStake} &nbsp;
-              <ClockCircleOutlined />
-            </span>
-          </div>
-        );
-      },
-    },
+    // {
+    //   title: '',
+    //   dataIndex: 'liquidity',
+    //   key: 'address',
+    //   render: () => {
+    //     let totalStake = 0.0;
+    //     totalPoolStakeCheck().then((res) => {
+    //       // setTotalStaked(res);
+    //       totalStake = res;
+    //     });
+    //     return (
+    //       <div className='liquidity'>
+    //         <p>Total staked</p>
+    //         <span>
+    //           {/* $119,022,665 */}
+    //           {totalStake} &nbsp;
+    //           <ClockCircleOutlined />
+    //         </span>
+    //       </div>
+    //     );
+    //   },
+    // },
     Table.EXPAND_COLUMN,
   ];
 
@@ -315,7 +315,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
                               <div className='khbAo'>Total locked:</div>
                               <div className='iHNZWH'>
                                 <div className='khbAo'>
-                                  <span>155,463,968 Hope</span>
+                                  <span>{totalStaked}</span>
                                 </div>
                               </div>
                             </div>
