@@ -279,7 +279,7 @@ const Farms = ({ conectmetaMask, accountDottedAddress }) => {
                                   target='_blank'
                                   rel='noreferrer'
                                 >
-                                  Get Hope-BNB LP
+                                  Get Lotte-GDCC LP
                                   <svg
                                     viewBox='0 0 24 24'
                                     color='primary'
