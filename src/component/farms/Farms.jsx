@@ -72,7 +72,7 @@ const columns = [
       <div className='months'>
         <p>APR</p>
         <span>
-          31.13%
+           5 %
           {/* <a className='icons'>
             <svg
               viewBox='0 0 24 24'
