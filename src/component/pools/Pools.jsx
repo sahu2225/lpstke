@@ -254,12 +254,12 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
             <div className='col-md-6'>
               <div className='row'>
                 <div className='col-md-4'>
-                  <Link
+                  {/* <Link
                     to='/grid-pools'
                     style={{ marginRight: '12px', fontSize: '18px' }}
                   >
                     <InsertRowBelowOutlined />
-                  </Link>
+                  </Link> */}
                   <Link to='/pools' style={{ fontSize: '18px' }}>
                     <UnorderedListOutlined />
                   </Link>
