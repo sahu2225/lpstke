@@ -114,7 +114,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
       key: 'x',
       render: () => (
         <div className='months'>
-          <p>Flexible APY</p>
+          <p>Fixed APY</p>
           <span>
             5%
 
