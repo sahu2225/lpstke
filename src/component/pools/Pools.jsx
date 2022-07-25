@@ -117,7 +117,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
           <p>Flexible APY</p>
           <span>
             31.13%
-            <a className='icons' onClick={() => setShowCalculator(true)}>
+            {/* <a className='icons' onClick={() => setShowCalculator(true)}>
               <svg
                 viewBox='0 0 24 24'
                 width='18px'
@@ -136,7 +136,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
             <Calculator
               show={showCalculator}
               close={() => setShowCalculator(false)}
-            />
+            /> */}
           </span>
         </div>
       ),
