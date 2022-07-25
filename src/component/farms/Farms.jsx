@@ -187,7 +187,7 @@ const Farms = ({ conectmetaMask, accountDottedAddress }) => {
   }, [totalStaked]);
 
   const harvest = async () => {
-    console.log('clicked harvest');
+    // console.log('clicked harvest');
     await harvestEarnings({
       setError,
       setTxs,
@@ -346,7 +346,7 @@ const Farms = ({ conectmetaMask, accountDottedAddress }) => {
                               onClick={harvest}
                               disabled={hopeEarned <= 0 ? true : false}
                             >
-                              Harvest
+                              Claim
                             </button>
                           </div>
                         </div>
