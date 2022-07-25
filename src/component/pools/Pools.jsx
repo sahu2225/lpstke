@@ -228,7 +228,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
   }, [hopeEarned, txs]);
 
   const harvest = async () => {
-    console.log('clicked harvest');
+    // console.log('clicked harvest');
     await harvestPoolEarnings({
       setError,
       setTxs,
@@ -414,7 +414,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
                                 disabled={hopeEarned <= 0 ? true : false}
                                 // disabled={true}
                               >
-                                Harvest
+                                Claim
                               </button>
                             </div>
                           </div>
