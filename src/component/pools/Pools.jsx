@@ -198,7 +198,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
   const data = [
     {
       key: 1,
-      name: 'Hope-BNB',
+      name: 'Lotte-BNB',
       address: 'New York No. 1 Lake Park',
       description:
         'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
@@ -399,7 +399,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
                         <div className='col-md-4'>
                           <div className='Hope-earn jbGbNT'>
                             <span className='bNegPh'>
-                              <label> Hope </label> &nbsp;
+                              <label> Lotte </label> &nbsp;
                               <label> EARNED </label>
                             </span>
                             <div className='content jJGrtW'>
@@ -408,15 +408,15 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
                               </div>
                               {/* <button className="panHope-btn izhINH" onClick={() => setShowToken(true)}> Harvest</button>
                                 <TokenPopup show={showToken} close={() => setShowToken(false)} /> */}
-                              <button
-                                className='panHope-btn izhINH pancake-button'
-                                onClick={harvest}
-                                disabled={hopeEarned <= 0 ? true : false}
-                                // disabled={true}
-                              >
-                                Claim
-                              </button>
                             </div>
+                            <button
+                              className='panHope-btn izhINH pancake-button'
+                              onClick={harvest}
+                              disabled={hopeEarned <= 0 ? true : false}
+                              // disabled={true}
+                            >
+                              Claim
+                            </button>
                           </div>
                         </div>
                         <div className='col-md-4'>
