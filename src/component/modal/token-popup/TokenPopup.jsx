@@ -116,7 +116,7 @@ const TokenPopup = () => {
                         <div className='stake-balance'>
                           <div className='d-flex justify-content-between mb-2'>
                             <div className='name'>
-                              <b>Stake</b>
+                              <b>Balance</b>
                             </div>
                             <div className='balance'>
                               <b>{balance}</b>
