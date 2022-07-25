@@ -427,7 +427,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
                           <div className='start-farming'>
                             <span>
                               <label> START </label> &nbsp;
-                              <label> FARMING </label>
+                              <label> STAKING </label>
                             </span>
                             <div className='content'>
                               {accountDottedAddress === '' ? (
