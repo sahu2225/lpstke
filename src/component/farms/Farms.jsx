@@ -142,7 +142,7 @@ const columns = [
 const data = [
   {
     key: 1,
-    name: 'Hope-BNB',
+    name: 'Lotte-BNB',
     address: 'New York No. 1 Lake Park',
     description:
       'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
@@ -280,6 +280,7 @@ const Farms = ({ conectmetaMask, accountDottedAddress }) => {
                                   rel='noreferrer'
                                 >
                                   Get Lotte-GDCC LP
+
                                   <svg
                                     viewBox='0 0 24 24'
                                     color='primary'
@@ -333,7 +334,7 @@ const Farms = ({ conectmetaMask, accountDottedAddress }) => {
                         <div className='col-md-4'>
                           <div className='Hope-earn jbGbNT'>
                             <span className='bNegPh'>
-                              <label> Hope </label> &nbsp;
+                              <label> Lotte </label> &nbsp;
                               <label> EARNED </label>
                             </span>
                             <div className='content jJGrtW'>
