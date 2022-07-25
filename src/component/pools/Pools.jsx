@@ -60,7 +60,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
             <Avatar style={{ backgroundColor: '#f56a00' }}>K</Avatar>
           </Avatar.Group>
           <p style={{ lineHeight: '100%' }}>
-            GDCC<br></br>
+            LOTTE<br></br>
             <span
               style={{
                 display: 'inline-block',
