@@ -116,7 +116,7 @@ const Pools = ({ conectmetaMask, accountDottedAddress }) => {
         <div className='months'>
           <p>Flexible APY</p>
           <span>
-            31.13%
+            5%
             <a className='icons' onClick={() => setShowCalculator(true)}>
               <svg
                 viewBox='0 0 24 24'
